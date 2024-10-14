@@ -23,7 +23,7 @@ mixSVG_main = function(y, X, s_trans, pat_idx, perm_sample, libsize, vtest_zero_
     s3_sq = s1_sq*s2_sq
 
     # test for fix effect
-    Tb = c(sum(res*s1), sum(res*s2))
+    Tb = c(sum(res*s1), sum(res*s2), sum(res*s3))
 
     ZivX = t(s/vw)%*%X
     XVivX_iv = solve(t(X/vw)%*%X)
