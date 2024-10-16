@@ -70,7 +70,7 @@ for(transfunc in c('gaussian', 'cosine')){
 }
 
 
-  pat_idx = 1:(ncol(s_trans)/2)
+  pat_idx = 1:length(pat_name)
 
   # generate permutation samples
   perm_sample = apply(t(1:n_perm), 2, FUN = function(i){
