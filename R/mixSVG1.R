@@ -46,6 +46,7 @@ mixSVG1 = function(count,
 
   # transformation of spatial coordinates
   s_trans = coord
+  pat_name = 'linear'
 
 for(transfunc in c('gaussian', 'cosine')){
   if(transfunc=='gaussian'){
@@ -60,8 +61,9 @@ for(transfunc in c('gaussian', 'cosine')){
   for(l in L){
     for(c in C){
       for(c2 in C2){
-      s_trans = cbind(s_trans, apply(coord, 2, transcoord_func, transfunc = transfunc, 
+       s_trans = cbind(s_trans, apply(coord, 2, transcoord_func, transfunc = transfunc, 
                                      l = l, c = c, c2 = c2))
+        pat_name = c(pat_name, paste(transfunc,l,c,c2,sep = "_"))
       }
     }
   }
@@ -83,7 +85,7 @@ for(transfunc in c('gaussian', 'cosine')){
     # gi = 1;
     set.seed(gi)
     y = as.matrix(count[gi,])
-    results = mixSVG_main(y, X, s_trans, pat_idx, perm_sample, libsize, vtest_zero_prop)
+    results = mixSVG_main(y, X, s_trans, pat_idx, pat_name, perm_sample, libsize, vtest_zero_prop)
   }
   names(results) = rownames(count)
 
